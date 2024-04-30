@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package id_generator;
+option go_package = "./id_generator";
+
+message IdGenRequest {
+}
+
+message IdGenResponse {
+  string id = 1;
+}
+
+service IdGenerator {
+  rpc GenId(IdGenRequest) returns(IdGenResponse);
+}
