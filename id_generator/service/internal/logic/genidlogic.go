@@ -22,10 +22,9 @@ func NewGenIdLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GenIdLogic 
 	}
 }
 
-var alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789="
-
 func (l *GenIdLogic) GenId(in *id_generator.IdGenRequest) (*id_generator.IdGenResponse, error) {
-	if id, err := gonanoid.Generate(alphabet, 5); err != nil {
+	if id, err := gonanoid.Generate(l.svcCtx.Config.Alphabet, l.svcCtx.Config.IdLength); err != nil {
+		logx.Alert(err.Error())
 		return nil, err
 	} else {
 		return &id_generator.IdGenResponse{

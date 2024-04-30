@@ -4,4 +4,3 @@ ListenOn: 0.0.0.0:8080
 #  Hosts:
 #  - 127.0.0.1:2379
 #  Key: idgen.rpc
-WorkerNum: 1
