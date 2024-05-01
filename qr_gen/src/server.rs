@@ -20,13 +20,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             .short('c')
             .long("config")
             .help("Configuration file location")
-            .default_value("config.json"));
+            .default_value("config.yaml"));
 
     let matches = command.get_matches();
     let config_location = matches.get_one::<String>("config").unwrap_or(&"".to_string()).to_string();
     let settings = Settings::new(&config_location, "QR_GEN")?;
 
     let addr = format!("{}:{}", settings.server.host, settings.server.port).parse()?;
+    println!("Server listening on {}", addr);
+
     let qr_gen_service = QrGen::default();
 
     Server::builder()

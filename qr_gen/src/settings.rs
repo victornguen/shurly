@@ -25,8 +25,6 @@ pub mod settings {
                 .add_source(File::with_name(location))
                 .add_source(Environment::with_prefix(env_prefix).separator("__").prefix_separator("__"))
                 .build()?;
-            // s.add_source(File::with_name(location).required(true))
-            //     .add_source(Environment::with_prefix(env_prefix).separator("__").prefix_separator("__"));
             let settings = s.try_deserialize()?;
             Ok(settings)
         }
