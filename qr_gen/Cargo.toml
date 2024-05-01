@@ -1,0 +1,29 @@
+[package]
+name = "qrgen"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "qrgen"
+path = "src/server.rs"
+
+[dependencies]
+tonic = "0.11.0" # Rust gRPC implementation
+prost = "0.12.4" # Rust Protocol Buffers implementation
+prost-derive = "0.12.4" # Derive macros for prost
+prost-types = "0.12.4" # Contains definitions of Protocol Buffers well-known types
+clap = { version = "4.5.4", features = ["derive"] }
+tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread"] }
+dotenv = "0.15.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1"
+config = "0.14.0"
+anyhow = "1.0.82"
+fast_qr = { version = "0.12.3", features = ["image"] }
+image = "0.25.1"
+png = "0.17.6"
+resvg = "0.41.0"
+thiserror = "1.0.59"
+
+[build-dependencies]
+tonic-build = "0.11.0"

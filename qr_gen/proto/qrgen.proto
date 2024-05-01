@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+service QrGenerator {
+  rpc GenerateQrCode (QrCodeRequest) returns (QrCodeResponse) {}
+}
+
+// The request message containing data to encode in qr code.
+message QrCodeRequest {
+  string text = 1;
+  int32 size = 2;
+  Format format = 3;
+  RGBA color = 4;
+  RGBA background_color = 5;
+  oneof Logo {
+    PredefinedLogo predefined_logo = 6;
+    bytes image = 7;
+    string image_url = 8;
+  }
+}
+
+message QrCodeResponse {
+  bytes qr_code = 1;
+}
+
+enum Format {
+  PNG = 0;
+  JPEG = 1;
+  SVG = 2;
+}
+
+message RGBA {
+  uint32 r = 1;
+  uint32 g = 2;
+  uint32 b = 3;
+  uint32 a = 4;
+}
+
+enum PredefinedLogo {
+  GOOGLE = 0;
+  FACEBOOK = 1;
+  TWITTER = 2;
+  INSTAGRAM = 3;
+  YOUTUBE = 4;
+  LINKEDIN = 5;
+  GITHUB = 6;
+  TIKTOK = 7;
+  SNAPCHAT = 8;
+  PINTEREST = 9;
+  REDDIT = 10;
+  DISCORD = 11;
+  ZOOM = 12;
+  SLACK = 13;
+}
