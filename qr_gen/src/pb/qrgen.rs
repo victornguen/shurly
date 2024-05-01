@@ -10,9 +10,9 @@ pub struct QrCodeRequest {
     #[prost(enumeration = "Format", tag = "3")]
     pub format: i32,
     #[prost(message, optional, tag = "4")]
-    pub color: ::core::option::Option<Rgba>,
+    pub bg_color: ::core::option::Option<Rgba>,
     #[prost(message, optional, tag = "5")]
-    pub background_color: ::core::option::Option<Rgba>,
+    pub logo_bg_color: ::core::option::Option<Rgba>,
     #[prost(oneof = "qr_code_request::Logo", tags = "6, 7, 8")]
     pub logo: ::core::option::Option<qr_code_request::Logo>,
 }
@@ -177,8 +177,8 @@ pub mod qr_generator_server {
             inner: T,
             interceptor: F,
         ) -> InterceptedService<Self, F>
-        where
-            F: tonic::service::Interceptor,
+            where
+                F: tonic::service::Interceptor,
         {
             InterceptedService::new(Self::new(inner), interceptor)
         }
@@ -212,10 +212,10 @@ pub mod qr_generator_server {
         }
     }
     impl<T, B> tonic::codegen::Service<http::Request<B>> for QrGeneratorServer<T>
-    where
-        T: QrGenerator,
-        B: Body + Send + 'static,
-        B::Error: Into<StdError> + Send + 'static,
+        where
+            T: QrGenerator,
+            B: Body + Send + 'static,
+            B::Error: Into<StdError> + Send + 'static,
     {
         type Response = http::Response<tonic::body::BoxBody>;
         type Error = std::convert::Infallible;

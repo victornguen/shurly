@@ -9,8 +9,8 @@ message QrCodeRequest {
   string text = 1;
   int32 size = 2;
   Format format = 3;
-  RGBA color = 4;
-  RGBA background_color = 5;
+  RGBA bg_color = 4;
+  RGBA logo_bg_color = 5;
   oneof Logo {
     PredefinedLogo predefined_logo = 6;
     bytes image = 7;
